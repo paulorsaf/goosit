@@ -1,13 +1,11 @@
 import 'package:goosit/models/error_model.dart';
-import 'package:goosit/pages/home/home_page.dart';
-import 'package:goosit/pages/register/register_page.dart';
 import 'package:goosit/pages/signin/signin_controller.dart';
 import 'package:goosit/pages/signin/signin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 
 import '../../mocks/mock_navigator_observer.dart';
+import '../../mocks/mock_page.dart';
 
 void main() {
   late SignInControllerMock controller;
@@ -195,8 +193,8 @@ class TestHelper {
 
     await tester.pumpWidget(MaterialApp(initialRoute: '/', routes: {
       '/': (context) => SignInPage(controller: controller),
-      '/register': (context) => RegisterPage(),
-      '/home': (context) => HomePage()
+      '/register': (context) => const MockPage(),
+      '/home': (context) => const MockPage()
     }, navigatorObservers: [
       mockObserver
     ]));

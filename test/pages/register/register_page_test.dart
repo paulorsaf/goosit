@@ -1,12 +1,11 @@
 import 'package:goosit/models/error_model.dart';
-import 'package:goosit/pages/home/home_page.dart';
 import 'package:goosit/pages/register/register_controller.dart';
 import 'package:goosit/pages/register/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 
 import '../../mocks/mock_navigator_observer.dart';
+import '../../mocks/mock_page.dart';
 
 void main() {
   late RegisterControllerMock controller;
@@ -146,7 +145,7 @@ class TestHelper {
         initialRoute: '/',
         routes: {
           '/': (context) => RegisterPage(controller: controller),
-          '/home': (context) => HomePage()
+          '/home': (context) => const MockPage()
         },
         navigatorObservers: [mockObserver],
       ),
