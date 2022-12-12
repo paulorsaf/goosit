@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../mocks/mock_navigator_observer.dart';
+
 void main() {
   late SignInControllerMock controller;
   late TestHelper testHelper;
@@ -156,20 +158,6 @@ void main() {
   });
 }
 
-class MockNavigatorObserver extends Mock implements NavigatorObserver {
-  String? navigatedTo = "";
-  String? replacedBy = "";
-  @override
-  void didPush(Route route, Route? previousRoute) {
-    navigatedTo = route.settings.name;
-  }
-
-  @override
-  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
-    replacedBy = newRoute?.settings.name;
-  }
-}
-
 class SignInControllerMock extends SignInController {
   bool hasTriedToSignIn = false;
   bool hasTriedToRecoverPassword = false;
@@ -208,7 +196,7 @@ class TestHelper {
     await tester.pumpWidget(MaterialApp(initialRoute: '/', routes: {
       '/': (context) => SignInPage(controller: controller),
       '/register': (context) => RegisterPage(),
-      '/home': (context) => const HomePage()
+      '/home': (context) => HomePage()
     }, navigatorObservers: [
       mockObserver
     ]));
