@@ -39,13 +39,14 @@ class ButtonProgressIndicator extends StatelessWidget {
 
   _getIndicator() {
     return SizedBox(
-        height: 28,
-        width: 28,
-        child: CircularProgressIndicator(
-          key: indicatorKey,
-          strokeWidth: 2,
-          color: type == ButtonType.solid ? Colors.white : Colors.teal,
-        ));
+      height: 28,
+      width: 28,
+      child: CircularProgressIndicator(
+        key: indicatorKey,
+        strokeWidth: 2,
+        color: type == ButtonType.solid ? Colors.white : Colors.teal,
+      ),
+    );
   }
 
   _getText() {
