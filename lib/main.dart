@@ -1,3 +1,4 @@
+import 'package:goosit/pages/add-plan/add_plan_page.dart';
 import 'package:goosit/pages/home/home_page.dart';
 import 'package:goosit/pages/register/register_page.dart';
 import 'package:goosit/pages/signin/signin_page.dart';
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => SplashPage(),
         '/signin': (context) => SignInPage(),
         '/home': (context) => HomePage(),
-        '/register': (context) => RegisterPage()
+        '/register': (context) => RegisterPage(),
+        '/addplan': (context) => const AddPlanPage()
       },
     );
   }
