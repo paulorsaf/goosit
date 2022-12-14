@@ -22,7 +22,10 @@ class HomePage extends StatelessWidget {
       ),
       drawer: const SideMenu(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        key: const Key("add-plan-button"),
+        onPressed: () {
+          _controller.goToAddPlanPage(context);
+        },
         tooltip: "Adicionar plano",
         child: const Icon(Icons.add),
       ),

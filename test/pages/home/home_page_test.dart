@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:goosit/pages/home/plan_model.dart';
 
+import '../../mocks/mock_page.dart';
 import '../splash/splash_page_test.dart';
 
 void main() {
@@ -83,6 +84,18 @@ void main() {
         expect(controller.hasShowedErrorMessage, true);
       });
     });
+    group('given user clicks on add plan button, then go to add plan page,',
+        () {
+      testWidgets('then go to add plan button page',
+          (WidgetTester tester) async {
+        await testHelper.createPage(tester, controller);
+
+        await tester.tap(find.byKey(const Key("add-plan-button")));
+        await tester.pump();
+
+        expect(controller.hasGoneToAddPlanPage, true);
+      });
+    });
   });
 }
 
@@ -101,8 +114,14 @@ _createPlanSummary() {
 class HomeControllerMock extends HomeController {
   bool hasSearchedPlans = false;
   bool hasShowedErrorMessage = false;
+  bool hasGoneToAddPlanPage = false;
 
   HomeControllerMock();
+
+  @override
+  goToAddPlanPage(BuildContext context) {
+    hasGoneToAddPlanPage = true;
+  }
 
   @override
   findPlans() {
@@ -124,7 +143,10 @@ class TestHelper {
     await tester.pumpWidget(
       MaterialApp(
         initialRoute: '/',
-        routes: {'/': (context) => HomePage(controller: controller)},
+        routes: {
+          '/': (context) => HomePage(controller: controller),
+          '/addplan': (context) => const MockPage(),
+        },
         navigatorObservers: [mockObserver],
       ),
     );

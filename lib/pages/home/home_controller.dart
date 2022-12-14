@@ -12,9 +12,15 @@ class HomeController {
     _planService = planService ?? PlanService();
   }
 
+  goToAddPlanPage(BuildContext context) {
+    Future.delayed(const Duration(milliseconds: 1), () {
+      Navigator.of(context).pushReplacementNamed('/addplan');
+    });
+  }
+
   findPlans() async {
     state.value = HomeState.loadPlans();
-    return await _planService.findPlans().then((value) {
+    _planService.findPlans().then((value) {
       state.value = HomeState.loadedPlans(value);
     }).catchError((error) {
       state.value = HomeState.err(error);
